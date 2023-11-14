@@ -93,14 +93,52 @@ body {
 }
 
 /* Register */
-div.container.wrapper {
-    margin-top: 10% !important;
+.wrapper-container-login-reg {
+  position: relative;
+  background-image: url(./assets/img_1.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+.col-md-6.offset-md-3 {
+  position: absolute;
+  width: 40%; 
+    left: 30%;
+    top: 60%;
 }
 input.form-control:focus {
     border: none;
     outline: 2px solid var(--color-brown) !important;
     box-shadow: 0 0 5px var(--color-brown);
 }
+
+@media (max-width: 760px) {
+  .wrapper-container-login {
+    position: relative;
+    height: 86vh;
+  }
+  .col-md-6.offset-md-3 {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    width: 80%;
+  }
+}
+
+@media (min-width: 760px) and (max-width: 850px) {
+  .wrapper-container-login {
+    position: relative;
+    height: 86vh;
+  }
+  .col-md-6.offset-md-3 {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    width: 50%;
+  }
+}
+
 /* NavLink */
 .active {
     border: 2px solid var(--color-brown);
@@ -110,6 +148,11 @@ input.form-control:focus {
 }
 
 /* Nav menu */
+.menu-nav-flex {
+  display: flex;
+  justify-content: space-around;
+  gap: 20rem;
+}
 ul.navbar-nav.wrapper {
     width: 100%;
     display: flex !important;
@@ -127,9 +170,26 @@ a.custom-pointer{
 .nav-link.text-warning-emphasis {
     display: inline-block;
     text-align: left;
-    padding: 10px;
+    margin-left: 10px;
     width: 150px;
-    color: #0000;
+    color: #000000;
+}
+.--text-warning-emphasis {
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+  width: 150px;
+  color: #ffffff !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .menu-nav-flex {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+ 
 }
 
 
@@ -574,10 +634,33 @@ section {
     
 }
 
+
+.d-wrapper {
+  height: 80vh;
+}
+
 /* admin dashboard */
+.sidebar-wrapper-dashboard {
+  text-align: center;
+}
+.--sidebar-wrapper-dashboard {
+  background-color: rgba(109, 57, 4, 0.528);
+  height: 472px;
+}
+
+.--sidebar-wrapper-dashboard.extra-style {
+  height: 533px;
+}
+.slide-extra-style {
+  height: 534px;
+}
 @media only screen and (max-width: 992px) {
-    div.sidebar-wrapper-dashboard {
+    .--sidebar-wrapper-dashboard {
         display: none;
+    }
+
+    .d-wrapper {
+      height: 86vh;
     }
 }
 
@@ -586,6 +669,18 @@ section {
     div.new-nav {
         display: none;
     }
+}
+
+
+.img-wrapper {
+  width: 80vw;
+}
+
+
+@media (max-width: 600px) {
+  .img-wrapper {
+    object-fit: cover;
+  }
 }
 
 

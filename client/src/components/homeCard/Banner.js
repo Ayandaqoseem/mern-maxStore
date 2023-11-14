@@ -47,14 +47,14 @@ export default function Banner() {
             >
                 {slides?.map((s) => {
                     return (
-                        <>
+                        <div key={s._id}>
                             <img 
-                                key={s._id}
+                                
                                 src={`${process.env.REACT_APP_API}/slide/photo/${s._id}`}
                                 alt={s.name}
                                 className="bannerImg"
                             />
-                        </>
+                        </div>
                     )
                 })}
             </Carousel>

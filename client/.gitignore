@@ -6,6 +6,10 @@
 .pnp.js
 .env
 
+# 
+/Category.js
+Product.js
+
 # testing
 /coverage
 

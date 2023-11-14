@@ -6,6 +6,7 @@ import { RESET_PRODUT, createProduct } from "../../../../redux/features/product/
 import LoadingGif from "../../../../image/loading/spinner.gif";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import "../product/styles/addProduct.scss";
 
 const initialState = {
   name: "",
@@ -77,12 +78,12 @@ export default function AddProduct() {
   return (
     <>
       <section>
-        <div className="container mt-5">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-2 --sidebar-wrapper-dashboard-addProduct">
               <AdminMenu />
             </div>
-            <div className="col-md-9">
+            <div className="col-md-10 mt-5 container">
               {isLoading && 
                   <div
                   className="d-flex justify-content-center align-items-center"

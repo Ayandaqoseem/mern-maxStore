@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import AdminMenu from "../../components/Nav/AdminMenu";
 import { Link } from "react-router-dom";
+import "./slide.scss"
 
 
 export default function AllSlides() {
@@ -24,12 +25,12 @@ export default function AllSlides() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container-fluid d-wrapper-slides">
             <div className="row">
-                <div className="col-md-3">
+                <div className="col-md-2 slide-extra-style-slides">
                     <AdminMenu />
                 </div>
-                <div className="col-md-9">
+                <div className="col-md-10 mt-5 container slide-extra-style-slides-col">
                     <p className="p-3 mt-2 h6 custom-text fw-bold">slide</p>
                     {slide.map((s) => (
                         <Link key={s._id}

@@ -30,7 +30,7 @@ const deleteProduct = async (id) => {
     const response = await axios.delete(BACKEND_URL + "/product/" + id, {
         withCredentials: true
     });
-    return response.data;
+    return response.data.message;
 }
 
 // get product

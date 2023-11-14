@@ -9,13 +9,13 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 import NewNavMenu from "./components/Nav/NewNavMenu";
-import AdminProduct from "./pages/admin/Product";
+// import AdminProduct from "./pages/admin/Product";
 import AdminCategory from "./pages/admin/Category";
 import Profile from "./pages/user/Profile";
 import Order from "./pages/user/Order";
-import SubCategory from "./pages/admin/SubCategory";
-import AdminProducts from "./pages/admin/products";
-import AdminProductUpdate from "./pages/admin/ProductUpdate";
+// import SubCategory from "./pages/admin/SubCategory";
+// import AdminProducts from "./pages/admin/products";
+// import AdminProductUpdate from "./pages/admin/ProductUpdate";
 import AdminSlide from "./pages/admin/Slide";
 import AllSlides from "./pages/admin/Slides";
 import AdminSlideUpdate from "./pages/admin/SlideUpdate";
@@ -25,6 +25,8 @@ import AddProduct from "./pages/admin/ReduxCategory/product/addProduct";
 import ViewProducts from "./pages/admin/ReduxCategory/product/viewProducts";
 import EditProduct from "./pages/admin/ReduxCategory/product/editProduct";
 import Footer from "./components/footer/Footer";
+import Coupon from "./pages/admin/ReduxCategory/coupon/Coupon";
+import Product from "./pages/shop/Product"
 
 
 
@@ -45,6 +47,7 @@ export default function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Product />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         
@@ -62,11 +65,12 @@ export default function App() {
           <Route path="admin/add-product" element={<AddProduct />} />
           <Route path="admin/all-products" element={<ViewProducts />} />
           <Route path="admin/edit-product/:id" element={<EditProduct />} />
+          <Route path="admin/coupon" element={<Coupon />} />
 
-          <Route path="admin/sub-category" element={<SubCategory />} />
+          {/* <Route path="admin/sub-category" element={<SubCategory />} />
           <Route path="admin/product" element={<AdminProduct />} />
           <Route path="admin/products" element={<AdminProducts />} />
-          <Route path="admin/product/update/:slug" element={<AdminProductUpdate />} />
+          <Route path="admin/product/update/:slug" element={<AdminProductUpdate />} /> */}
           <Route path="admin/slide" element={<AdminSlide />} />
           <Route path="admin/slides" element={<AllSlides />} />
           <Route path="admin/slide/update/:slug" element={<AdminSlideUpdate />} />

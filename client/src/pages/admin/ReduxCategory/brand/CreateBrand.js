@@ -31,7 +31,7 @@ export default function CreateBrand() {
             }
             await dispatch(createBrand(formData));
             await dispatch(getBrands());
-            setName("")
+            setName("");
             
         }
     return ( 

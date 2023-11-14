@@ -3,7 +3,7 @@ import AdminMenu from "../../components/Nav/AdminMenu";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-// import Resizer from "react-image-file-resizer"
+import "./slide.scss"
 
 
 
@@ -58,20 +58,21 @@ export default function AdminSlide() {
       
 
   return (
-    <div className="container mt-5">
+    <div className="container-fluid d-wrapper-slide">
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-2 --sidebar-wrapper-dashboard slide-extra-style-slide">
           <AdminMenu />
         </div>
-        <div className="col-md-9">
+        <div className="col-md-10 mt-5 container">
           {/* <p className="p-3 mt-2 h6 custom-text fw-bold">Manage Product</p> */}
 
           {photo && (
-            <div className="text-center">
+            <div className="img-wrapper">
               <img
                 src={URL.createObjectURL(photo)}
                 alt="product photo"
-                className="img img-responsive"
+                className=""
+                width="100%"
                 height="200px"
               />
             </div>

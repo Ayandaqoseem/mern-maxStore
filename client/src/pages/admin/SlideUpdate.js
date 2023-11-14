@@ -98,22 +98,22 @@ export default function AdminSlideUpdate() {
       
 
   return (
-    <div className="container mt-5">
+    <div className="container-fluid d-wrapper">
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-2 --sidebar-wrapper-dashboard slide-extra-style">
           <AdminMenu />
         </div>
-        <div className="col-md-9">
+        <div className="col-md-10 mt-5 container">
           {/* <p className="p-3 mt-2 h6 custom-text fw-bold">Manage Product</p> */}
 
           {photo ? (
-            <div className="text-center">
+            <div className="img-wrapper">
               <img
                 src={URL.createObjectURL(photo)}
                 alt="product photo"
                 className="img img-responsive"
                 height="200px"
-                width="835vw"
+                width="100%"
               />
             </div>
           ): (
@@ -123,7 +123,7 @@ export default function AdminSlideUpdate() {
                 alt="Banner slide photo" 
                 className="img img-responsive"
                 height="200px"
-                width="835vw"
+                width="100%"
               />
             </div>
           )}

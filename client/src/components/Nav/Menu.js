@@ -92,42 +92,56 @@ export default function Menu() {
                     </li>
                   </>
                 ) : (
-                  <div className="dropdown menu-dropdown">
-                    <li>
-                      <a
-                        className="nav-link custom-pointer dropdown-toggle text-color"
-                        data-bs-toggle="dropdown"
-                      >
-                        {auth?.user?.name}
-                      </a>
+                  <div className="menu-nav-flex">
+                      <li className="nav-item">
+                        <NavLink
+                          className="nav-link text-warning-emphasis"
+                          to="/shop"
+                          onClick={handleLinkClick}
+                        >
+                          Shop
+                        </NavLink>
+                      </li>
+                    <div className="dropdown menu-dropdown">
+                      <li>
+                        <a
+                          className="nav-link custom-pointer dropdown-toggle text-color"
+                          data-bs-toggle="dropdown"
+                        >
+                          {auth?.user?.name}
+                        </a>
 
-                      <ul className="dropdown-menu">
-                        <li className="nav-item">
-                          <NavLink
-                            className="nav-link text-warning-emphasis"
-                            to={`/dashboard/${
-                              auth?.user?.role === 1 ? "admin" : "user"
-                            }`}
-                            onClick={handleLinkClick}
-                          >
-                            Dashboard
-                          </NavLink>
-                        </li>
-                        <li className="nav-item">
-                          <a
-                            className="nav-link text-warning-emphasis custom-pointer"
-                            onClick={() => {
-                              handleLinkClick();
-                              logout();
-                            }}
-                          >
-                            Logout
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
+                        <ul className="dropdown-menu">
+                          <li className="nav-item">
+                            <NavLink
+                              className="nav-link text-warning-emphasis"
+                              to={`/dashboard/${
+                                auth?.user?.role === 1 ? "admin" : "user"
+                              }`}
+                              onClick={handleLinkClick}
+                            >
+                              Dashboard
+                            </NavLink>
+                          </li>
+                          <li className="nav-item">
+                            <a
+                              className="nav-link text-warning-emphasis custom-pointer"
+                              onClick={() => {
+                                handleLinkClick();
+                                logout();
+                              }}
+                            >
+                              Logout
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </div>
+
                   </div>
                 )}
+
+           
 
                 {auth?.user?.role === 1 && (
                   <div className="col-md-3 sidebar-wrapper">
@@ -136,7 +150,7 @@ export default function Menu() {
                     </p>
 
                     <ul className="list-group ">
-                      <li>
+                      {/* <li>
                         <NavLink
                           className="nav-link text-warning-emphasis"
                           to="/dashboard/admin/category"
@@ -144,7 +158,7 @@ export default function Menu() {
                         >
                           Create category
                         </NavLink>
-                      </li>
+                      </li> */}
                       <li>
                         <NavLink
                           className="nav-link text-warning-emphasis"
@@ -184,6 +198,15 @@ export default function Menu() {
                       <li>
                         <NavLink
                           className="nav-link text-warning-emphasis"
+                          to="/dashboard/admin/coupon"
+                          onClick={handleLinkClick}
+                        >
+                          Coupon
+                        </NavLink>
+                      </li>
+                      {/* <li>
+                        <NavLink
+                          className="nav-link text-warning-emphasis"
                           to="/dashboard/admin/sub-category"
                           onClick={handleLinkClick}
                         >
@@ -207,7 +230,7 @@ export default function Menu() {
                         >
                           Products
                         </NavLink>
-                      </li>
+                      </li> */}
                       <li>
                         <NavLink
                           className="nav-link text-warning-emphasis"

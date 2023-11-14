@@ -6,13 +6,15 @@ const router = express.Router();
 import { requireSignin, isAdmin } from "../middlewares/auth.js";
 
 import { 
-                    create
- } from "../controllers/coupon.js";
+                    create, 
+                    list, 
+                    read,
+                    remove
+} from "../controllers/coupon.js";
 
-router.post("/createCoupon", requireSignin, isAdmin, create);
-
+router.post("/coupon", requireSignin, isAdmin, create);
+router.get("/coupons", requireSignin, isAdmin, list);
+router.get("/coupon/:couponName", requireSignin, read);
+router.delete("/coupon/:id", requireSignin, isAdmin, remove);
 
 export default router;
-
-
-

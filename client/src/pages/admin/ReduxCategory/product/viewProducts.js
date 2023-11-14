@@ -62,12 +62,12 @@ export default function ViewProducts() {
   return (
     <>
       <section>
-        <div className="container mt-5">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-2 --sidebar-wrapper-dashboard-viewProduct">
               <AdminMenu />
             </div>
-            <div className="col-md-9">
+            <div className="col-md-10 mt-5 container --sidebar-wrapper-dashboard-viewProduct-col">
               <section>
                 <div className="product-list">
                   <div className="table">

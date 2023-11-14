@@ -47,32 +47,34 @@ export default function Login() {
     
 
     return (
-        <div className="container wrapper">
-           <div className="row">
-                <div className="col-md-6 offset-md-3">
-                    <form onSubmit={handleSubmit}>
-                        <input  
-                            type="email"
-                            className="form-control p-2 mb-2"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+        <div className="wrapper-container-login-reg">
+            <div className="container wrapper">
+            <div className="row">
+                    <div className="col-md-6 offset-md-3">
+                        <form onSubmit={handleSubmit}>
+                            <input  
+                                type="email"
+                                className="form-control p-2 mb-2"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
 
-                        <input  
-                            type="password"
-                            className="form-control p-2 mb-2"
-                            placeholder="Enter your password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                            <input  
+                                type="password"
+                                className="form-control p-2 mb-2"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
 
-                        <button className="btn btn-info" type="submit">
-                            Login
-                        </button>
-                    </form>
-                </div>
-           </div>
+                            <button className="btn btn-info" type="submit">
+                                Login
+                            </button>
+                        </form>
+                    </div>
+            </div>
+            </div>
         </div>
     )
 }

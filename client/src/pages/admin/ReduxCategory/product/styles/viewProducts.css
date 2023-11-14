@@ -1,3 +1,8 @@
+.--sidebar-wrapper-dashboard-viewProduct {
+    background-color: rgba(109, 57, 4, 0.528);
+    height: 655px;
+}
+
 .product-list {
     color: #333;
 }
@@ -44,8 +49,13 @@ tr {
 }
 
 
+@media only screen and (max-width: 992px) {
+    .--sidebar-wrapper-dashboard-viewProduct {
+        display: none;
+    }
+}
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 540px) {
     .table-wrapper {
         width: 100%;
         overflow-x: scroll;
