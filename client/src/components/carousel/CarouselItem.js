@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 function removeHTMLTags(input) {
@@ -10,7 +11,8 @@ export default function CarouselItem({
     name, 
     price, 
     description,
-    regularPrice
+    regularPrice,
+    quantity,
  }) {
   const desc = removeHTMLTags(description);
   return (
@@ -33,7 +35,14 @@ export default function CarouselItem({
         <h5>{name?.substring(0, 16)}...</h5>
         <p className="--mb">{desc?.substring(0, 26)}...</p>
       </Link>
-      <button className="--btn --btn-primary --btn-block">Add To Cart</button>
+      {quantity > 0 ? (
+        <button className="--btn --btn-primary --btn-block">Add To Cart</button>
+      ) : (
+        <button 
+        className="--btn --btn-danger --btn-block"
+        onClick={() => toast.error("Sorry, Product out of stock.")}
+      >Out of stock</button>
+      )}
     </div>
   );
 }

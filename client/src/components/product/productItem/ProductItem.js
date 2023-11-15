@@ -58,7 +58,7 @@ export default function ProductItem({
               className="--btn --btn-danger"
               onClick={() => toast.error("Sorry, Product is out of stock")}
             >
-              Add To Cart
+              Out of stock
             </button>
           )}
         </div>

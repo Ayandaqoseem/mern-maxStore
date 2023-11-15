@@ -19,11 +19,14 @@ export default function Home() {
     dispatch(getProducts());
   }, [dispatch]);
 
+ 
+
   const latest = products
     ?.filter((item, index) => {
       return item.quantity > 0;
     })
     ?.filter((item, index) => index < 6);
+
 
     const footwear = products
     ?.filter((item, index) => {
@@ -68,7 +71,7 @@ export default function Home() {
 //   </div>
 // ));
 
-console.log("SHow sorted By Solds => ", sortedBySold);
+
 
 
   const latestProducts = latest.map((item) => (
@@ -79,6 +82,7 @@ console.log("SHow sorted By Solds => ", sortedBySold);
         price={item.price}
         regularPrice={item.regularPrice}
         description={item.description}
+        quantity={item.quantity}
       />
     </div>
   ));
@@ -91,6 +95,7 @@ console.log("SHow sorted By Solds => ", sortedBySold);
         price={item.price}
         regularPrice={item.regularPrice}
         description={item.description}
+        quantity={item.quantity}
       />
     </div>
   ));
@@ -103,6 +108,7 @@ console.log("SHow sorted By Solds => ", sortedBySold);
         price={item.price}
         regularPrice={item.regularPrice}
         description={item.description}
+        quantity={item.quantity}
       />
     </div>
   ));
@@ -115,6 +121,7 @@ console.log("SHow sorted By Solds => ", sortedBySold);
         price={item.price}
         regularPrice={item.regularPrice}
         description={item.description}
+        quantity={item.quantity}
       />
     </div>
   ));
@@ -127,6 +134,7 @@ console.log("SHow sorted By Solds => ", sortedBySold);
         price={item.price}
         regularPrice={item.regularPrice}
         description={item.description}
+        quantity={item.quantity}
       />
     </div>
   ));

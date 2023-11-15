@@ -3,6 +3,7 @@
 :root {
     --font-family: 'Montserrat', sans-serif;
     --color-brown:  #aa4e02;
+    --color-red: red;
 }
 
 html {
@@ -58,7 +59,7 @@ body {
 
 .--btn-danger {
   color: #fff;
-  background: var(--color-brown);
+  background: var(--color-red);
 }
 
 .--btn-large {
