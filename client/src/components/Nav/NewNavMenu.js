@@ -13,7 +13,7 @@ export default function NewNavMenu() {
                     <p>Electronics</p>
                     <p>Prime</p>
                     <p>Today's Deals</p>
-                    <p>MaxStore Pay</p>
+                    <p>Solar/Inverter Installation</p>
                 </div>
                 <div className="right-data">
                     <p>Shop deals in electonics</p>
