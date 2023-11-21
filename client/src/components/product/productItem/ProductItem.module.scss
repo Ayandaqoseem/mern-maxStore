@@ -77,8 +77,9 @@
                flex-direction: column;
                margin-bottom: 1rem;
                .textP {
+                    font-size: 1rem;
                     display: flex;
-                    // gap: 1rem;
+                    gap: 1rem;
                     font-weight: 500;
                     del {
                          color: orangered;

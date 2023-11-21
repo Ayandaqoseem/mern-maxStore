@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "./ProductItem.module.scss";
 import toast from "react-hot-toast";
 import DOMPurify from "dompurify";
+import ProductRating from "../productRating/ProductRating";
+import { calculateAverageRating } from "../../../utils";
 
 export default function ProductItem({
   product,
@@ -13,9 +15,11 @@ export default function ProductItem({
   photo,
   regularPrice,
 }) {
+  const averageRating = calculateAverageRating(product.ratings)
+
   return (
     <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
-      <Link to={`product-details/${_id}`}>
+      <Link to={`/product-details/${_id}`}>
         <div className={styles.img}>
           <img src={photo[0]} alt={name} />
         </div>
@@ -38,7 +42,10 @@ export default function ProductItem({
               currency: "NGN",
             })}
           </p>
-          <h6>Rating ***</h6>
+          <ProductRating 
+            averageRating={averageRating}
+            noOfRating={product?.ratings?.length}
+          />
           <h6>{name?.substring(0, 10)}...</h6>
 
           {!grid && (

@@ -13,20 +13,13 @@ export default function BrandList() {
   const { isLoading, brands } = useSelector((state) => state.category);
   const dispatch = useDispatch();
 
-  console.log("show the format brand =>", brands);
 
   useEffect(() => {
     dispatch(getBrands());
   }, [dispatch]);
 
 
-  const handleDeleteBrand = async (id) => {
-    
-      await dispatch(deleteBrand(id));
-      await dispatch(getBrands());
   
-  };
-
   const confirmDelete = (id) => {
     confirmAlert({
       title: "Delete Brand",
@@ -42,6 +35,13 @@ export default function BrandList() {
         },
       ],
     });
+  };
+  
+  const handleDeleteBrand = async (id) => {
+    
+      await dispatch(deleteBrand(id));
+      await dispatch(getBrands());
+  
   };
 
   return (

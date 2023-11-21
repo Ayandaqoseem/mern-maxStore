@@ -50,13 +50,13 @@ const getBrands = async () => {
 }
 
 // delete brand
-const deleteBrand = async (slug) => {
+const deleteBrand = async (id) => {
   const response = await axios.delete(
-    API_URL + "/brand/" + slug, {
+    API_URL + "/brand/" + id, {
       withCredentials: true
     }
   );
-  return response.data
+  return response.data.message
 }
 
 

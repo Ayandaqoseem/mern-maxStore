@@ -120,6 +120,20 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.message = "";
     },
+
+    GET_PRICE_RANGE(state, action) {
+      const { products } = action.payload;
+      const array = []
+      products.map((product) => {
+        const price = product.price
+        return array.push(price)
+      })
+      const max = Math.max(...array)
+      const min = Math.min(...array)
+
+      state.maxPrice = max;
+      state.minPrice = min
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -224,7 +238,10 @@ const productSlice = createSlice({
   },
 });
 
-export const { RESET_PRODUT } = productSlice.actions;
+export const { 
+  RESET_PRODUT,
+  GET_PRICE_RANGE,
+ } = productSlice.actions;
 
 export const selectProduct = (state) => state.product.product;
 export const selectIsLoading = (state) => state.product.isLoading

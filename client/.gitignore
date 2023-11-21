@@ -7,8 +7,9 @@
 .env
 
 # 
-/Category.js
-Product.js
+Category.js
+# products.js
+ProductUpdate.js
 
 # testing
 /coverage
