@@ -2,6 +2,9 @@ import { useAuth } from "../../context/auth";
 import Logo from "../../image/logo/MaxLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Badge } from "antd";
+import { FaShoppingCart } from "react-icons/fa"
+
 
 export default function Menu() {
   const [auth, setAuth] = useAuth();
@@ -74,7 +77,7 @@ export default function Menu() {
                   <>
                     <li className="nav-item">
                       <NavLink
-                        className="nav-link text-warning-emphasis"
+                        className="nav-link text-warning-emphasis extra-com"
                         to="/login"
                         onClick={handleLinkClick}
                       >
@@ -83,7 +86,7 @@ export default function Menu() {
                     </li>
                     <li className="nav-item">
                       <NavLink
-                        className="nav-link text-warning-emphasis"
+                        className="nav-link text-warning-emphasis extra-com"
                         to="/register"
                         onClick={handleLinkClick}
                       >
@@ -93,15 +96,31 @@ export default function Menu() {
                   </>
                 ) : (
                   <div className="menu-nav-flex">
-                      <li className="nav-item">
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link text-warning-emphasis extra-com"
+                        to="/shop"
+                        onClick={handleLinkClick}
+                      >
+                        Shop
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <Badge
+                        offset={[-5, 11]}
+                        showZero={true}
+                      >
                         <NavLink
-                          className="nav-link text-warning-emphasis"
-                          to="/shop"
+                          className="nav-link text-warning-emphasis extra-com"
+                          to="/cart"
                           onClick={handleLinkClick}
                         >
-                          Shop
+                          Cart
+                          <FaShoppingCart size={20} />
                         </NavLink>
-                      </li>
+                      </Badge>
+                    </li>
+
                     <div className="dropdown menu-dropdown">
                       <li>
                         <a
@@ -137,11 +156,8 @@ export default function Menu() {
                         </ul>
                       </li>
                     </div>
-
                   </div>
                 )}
-
-           
 
                 {auth?.user?.role === 1 && (
                   <div className="col-md-3 sidebar-wrapper">
@@ -149,7 +165,7 @@ export default function Menu() {
                       Admin dashboard
                     </p>
 
-                    <ul className="list-group ">
+                    <ul className="list-group menu-product-bar">
                       {/* <li>
                         <NavLink
                           className="nav-link text-warning-emphasis"

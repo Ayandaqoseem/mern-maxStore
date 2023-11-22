@@ -4,6 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import { getProduct } from "../../../redux/features/product/productSlice";
 import styles from "./ProductDetails.module.scss";
 import LoadingGif from "../../../image/loading/spinner.gif";
+import { calculateAverageRating } from "../../../utils";
+import ProductRating from "../productRating/ProductRating";
+import DOMPurify from "dompurify";
+import toast from "react-hot-toast";
+import Card from "../../cards/Card";
 
 export default function ProductDetails() {
   const dispatch = useDispatch();
@@ -11,9 +16,28 @@ export default function ProductDetails() {
   const [imageIndex, setImageIndex] = useState(0);
   const { product, isLoading } = useSelector((state) => state.product);
 
+  const averageRating = calculateAverageRating(product?.ratings);
+
   useEffect(() => {
     dispatch(getProduct(id));
   }, [dispatch, id]);
+
+  const slideLength = product?.photo?.length;
+  const nextSlide = () => {
+    setImageIndex(imageIndex === slideLength - 1 ? 0 : imageIndex + 1);
+  };
+
+  let slideInterval;
+
+  useEffect(() => {
+    if (product?.photo?.length) {
+      const autoImage = () => {
+        slideInterval = setInterval(nextSlide, 2000);
+      };
+      autoImage();
+    }
+    return () => clearInterval(slideInterval);
+  }, [imageIndex, slideInterval, product]);
 
   return (
     <section>
@@ -54,9 +78,92 @@ export default function ProductDetails() {
                 })}
               </div>
             </div>
+            <div className={styles.content}>
+              <h5>{product?.name}</h5>
+
+              <ProductRating
+                averageRating={averageRating}
+                noOfRating={product?.ratings?.length}
+              />
+              <div className="--underline"></div>
+              <div className={styles.property}>
+                <p>
+                  <b>Price:</b>
+                </p>
+                <p className={styles.price}>
+                  {product?.price?.toLocaleString("en-Us", {
+                    style: "currency",
+                    currency: "NGN",
+                  })}
+                </p>
+              </div>
+              <div className={styles.property}>
+                <p>
+                  <b>SKU:</b>
+                </p>
+                <p>{product?.sku}</p>
+              </div>
+              <div className={styles.property}>
+                <p>
+                  <b>Category:</b>
+                </p>
+                <p>{product?.category}</p>
+              </div>
+              <div className={styles.property}>
+                <p>
+                  <b>Brand:</b>
+                </p>
+                <p>{product?.brand}</p>
+              </div>
+              <div className={styles.property}>
+                <p>
+                  <b>Color:</b>
+                </p>
+                <p>{product?.color}</p>
+              </div>
+              <div className={styles.property}>
+                <p>
+                  <b>Quantity in stock:</b>
+                </p>
+                <p>{product?.quantity}</p>
+              </div>
+              <div className={styles.property}>
+                <p>
+                  <b>Sold:</b>
+                </p>
+                <p>{product?.sold}</p>
+              </div>
+              <div className="--flex-start">
+                {product?.quantity > 0 ? (
+                  <button className="--btn --btn-primary">ADD TO CART</button>
+                ) : (
+                  <button
+                    className="--btn --btn-danger"
+                    onClick={() =>
+                      toast.error("Sorry, Product is out of stock")
+                    }
+                  >
+                    OUT OF STOCK
+                  </button>
+                )}
+                <button className="--btn --btn-danger">ADD TO WISHLIST</button>
+              </div>
+              <div className="--underline"></div>
+              <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  product?.description
+                ),
+              }}
+            ></div>
+            </div>
           </div>
         </>
       )}
+      {/* Product review */}
+      <Card cardClass={styles.card}>
+        <h5>Product reveiw??</h5>
+      </Card>
     </section>
   );
 }

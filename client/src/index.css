@@ -81,6 +81,16 @@ body {
   display: flex;
 }
 
+.--flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.--underline {
+  border-bottom: 1px solid #ccc;
+}
+
 
 
 @media screen and (max-width: 600px) {
@@ -175,6 +185,7 @@ a.custom-pointer{
     width: 150px;
     color: #000000;
 }
+
 .--text-warning-emphasis {
   display: inline-block;
   text-align: left;
@@ -189,8 +200,17 @@ a.custom-pointer{
     flex-direction: column-reverse;
     gap: 2rem;
   }
-
+  .menu-product-bar {
+    list-style: none !important;
+  }
  
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .nav-link.text-warning-emphasis.extra-com {
+    width: 65px;
+
+  }
 }
 
 

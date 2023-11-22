@@ -28,6 +28,7 @@ import Footer from "./components/footer/Footer";
 import Coupon from "./pages/admin/ReduxCategory/coupon/Coupon";
 import Product from "./pages/shop/Product"
 import ProductDetails from "./components/product/productDetails/ProductDetail";
+import Cart from "./pages/cart/Cart";
 
 
 
@@ -50,6 +51,9 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Product />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         
