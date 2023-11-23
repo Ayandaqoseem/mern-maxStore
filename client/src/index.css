@@ -150,6 +150,9 @@ input.form-control:focus {
   }
 }
 
+.activeImg {
+  border: 1px solid var(--color-brown);
+}
 /* NavLink */
 .active {
     border: 2px solid var(--color-brown);

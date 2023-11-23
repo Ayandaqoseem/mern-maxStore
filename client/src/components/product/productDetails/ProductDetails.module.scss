@@ -57,6 +57,17 @@
   }
 }
 
+.count {
+  display: flex;
+  align-items: center;
+  & > * {
+    margin-right: 1rem;
+  }
+  p {
+    margin-top: 1rem;
+  }
+}
+
 .content {
   width: 50%;
   padding: 0 5px;
@@ -92,5 +103,8 @@
   .content {
     width: 100%;
     margin-top: 75px;
+    h5 {
+      margin-top: 1rem;
+    }
   }
 }

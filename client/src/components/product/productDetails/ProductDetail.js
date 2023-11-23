@@ -9,12 +9,17 @@ import ProductRating from "../productRating/ProductRating";
 import DOMPurify from "dompurify";
 import toast from "react-hot-toast";
 import Card from "../../cards/Card";
+import { ADD_TO_CART, DECREASE_CART, selectCartItems } from "../../../redux/features/cart/cartSlice";
 
 export default function ProductDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [imageIndex, setImageIndex] = useState(0);
   const { product, isLoading } = useSelector((state) => state.product);
+  const cartItems = useSelector(selectCartItems);
+
+  const cart = cartItems.find((cart) => cart._id === id);
+  const isCartAdded = cartItems.findIndex((cart) => cart._id === id)
 
   const averageRating = calculateAverageRating(product?.ratings);
 
@@ -38,6 +43,13 @@ export default function ProductDetails() {
     }
     return () => clearInterval(slideInterval);
   }, [imageIndex, slideInterval, product]);
+
+  const addToCart = (product) => {
+    dispatch(ADD_TO_CART(product))
+  }
+  const decreaseCart = (product) => {
+    dispatch(DECREASE_CART(product))
+  }
 
   return (
     <section>
@@ -133,9 +145,36 @@ export default function ProductDetails() {
                 </p>
                 <p>{product?.sold}</p>
               </div>
+
+              {isCartAdded < 0 ? null : (
+                <>
+                <div className={styles.count}>
+                  <button 
+                    className="--btn"
+                    onClick={() => decreaseCart(product)}
+                  >
+                    -
+                  </button>
+                  <p>
+                    <b>{cart.cartQuantity}</b>
+                  </p>
+                  <button 
+                    className="--btn"
+                    onClick={() => addToCart(product)}
+                  >
+                    +
+                  </button>
+                </div>
+                </>
+              )}
               <div className="--flex-start">
                 {product?.quantity > 0 ? (
-                  <button className="--btn --btn-primary">ADD TO CART</button>
+                  <button 
+                    className="--btn --btn-primary"
+                    onClick={() => addToCart(product)}
+                  >
+                    ADD TO CART
+                  </button>
                 ) : (
                   <button
                     className="--btn --btn-danger"
