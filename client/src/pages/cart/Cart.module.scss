@@ -1,0 +1,27 @@
+.table {
+                    padding: 15px 0 5px 0;
+                    width: 100%;
+                    overflow-x: auto;
+
+                    .icons {
+                                        cursor: pointer;
+                    }
+}
+.count {
+                    display: flex;
+                    align-items: center;
+                    & > * {
+                      margin-right: 1rem;
+                    }
+                    p {
+                      margin-top: 1rem;
+                    }
+                  }
+
+
+                  .summary {
+                    margin-top: 2rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: start;
+                  }

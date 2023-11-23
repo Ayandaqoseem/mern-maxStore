@@ -1,15 +1,21 @@
 import { useAuth } from "../../context/auth";
 import Logo from "../../image/logo/MaxLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Badge } from "antd";
 import { FaShoppingCart } from "react-icons/fa"
+import { useDispatch, useSelector } from "react-redux";
+import { CALCULATE_TOTAL_QUANTITY, selectCartItems, selectCartTotalQuantity } from "../../redux/features/cart/cartSlice";
 
 
 export default function Menu() {
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
+  const cartItems = useSelector(selectCartItems)
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity)
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const logout = () => {
     setAuth({ ...auth, user: null, token: "" });
@@ -20,6 +26,10 @@ export default function Menu() {
   const handleLinkClick = () => {
     setIsNavbarOpen(false);
   };
+
+  useEffect(() => {
+    dispatch(CALCULATE_TOTAL_QUANTITY)
+  }, [dispatch, cartItems])
 
   return (
     <>
@@ -106,19 +116,15 @@ export default function Menu() {
                       </NavLink>
                     </li>
                     <li className="nav-item">
-                      <Badge
-                        offset={[-5, 11]}
-                        showZero={true}
-                      >
                         <NavLink
-                          className="nav-link text-warning-emphasis extra-com"
+                          className="nav-link text-warning-emphasis extra-com cart-count"
                           to="/cart"
                           onClick={handleLinkClick}
                         >
                           Cart
                           <FaShoppingCart size={20} />
+                          <p>{cartTotalQuantity}</p>
                         </NavLink>
-                      </Badge>
                     </li>
 
                     <div className="dropdown menu-dropdown">

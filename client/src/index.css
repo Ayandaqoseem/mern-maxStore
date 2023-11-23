@@ -196,6 +196,20 @@ a.custom-pointer{
   width: 150px;
   color: #ffffff !important;
 }
+.cart-count {
+  position: relative;
+}
+.cart-count p {
+  position: absolute;
+  bottom: 0.1rem;
+  left: 4.2rem;
+  color: red;
+  font-weight: 600;
+  border: 2px solid red;
+  border-radius: 50%;
+  padding: 0 0.4rem;
+  font-size: 10px;
+}
 
 @media only screen and (max-width: 992px) {
   .menu-nav-flex {

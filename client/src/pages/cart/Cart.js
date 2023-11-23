@@ -3,10 +3,13 @@ import styles from "./Cart.module.scss";
 import "./Radio.scss";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { ADD_TO_CART, DECREASE_CART, REMOVE_FROM_CART, selectCartItems } from "../../redux/features/cart/cartSlice";
+import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY, CLEAR_CART, DECREASE_CART, REMOVE_FROM_CART, selectCartItems, selectCartTotalQuantity } from "../../redux/features/cart/cartSlice";
+import Card from "../../components/cards/Card";
+import { useEffect } from "react";
 
 export default function Cart() {
   const cartItems = useSelector(selectCartItems);
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,6 +22,13 @@ export default function Cart() {
   const removeFromCart = (cart) => {
     dispatch(REMOVE_FROM_CART(cart))
   };
+  const clearCart = () => {
+    dispatch(CLEAR_CART());
+  }
+
+  useEffect(() => {
+    dispatch(CALCULATE_TOTAL_QUANTITY())
+  }, [dispatch, cartItems])
 
   return (
     <section>
@@ -93,6 +103,24 @@ export default function Cart() {
               })}
             </tbody>
           </table>
+
+          <div className={styles.summary}>
+            <button 
+              className="--btn --btn-danger"
+              onClick={clearCart}
+            >Clear Cart</button>
+            <div className={styles.checkout}>
+              <div>
+                <Link to={"/shop"}>&larr; Continue shopping</Link>
+              </div>
+              <br/>
+              <Card cardClass={styles.card}>
+                <p>
+                  <b>{`Cart item(s): ${cartTotalQuantity}`}</b>
+                </p>
+              </Card>
+            </div>
+          </div>
           </>
         )}
       </div>
