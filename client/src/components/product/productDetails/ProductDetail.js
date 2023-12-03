@@ -9,7 +9,7 @@ import ProductRating from "../productRating/ProductRating";
 import DOMPurify from "dompurify";
 import toast from "react-hot-toast";
 import Card from "../../cards/Card";
-import { ADD_TO_CART, DECREASE_CART, selectCartItems } from "../../../redux/features/cart/cartSlice";
+import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY, DECREASE_CART, saveCartDB, selectCartItems } from "../../../redux/features/cart/cartSlice";
 
 export default function ProductDetails() {
   const dispatch = useDispatch();
@@ -18,8 +18,8 @@ export default function ProductDetails() {
   const { product, isLoading } = useSelector((state) => state.product);
   const cartItems = useSelector(selectCartItems);
 
-  const cart = cartItems.find((cart) => cart._id === id);
-  const isCartAdded = cartItems.findIndex((cart) => cart._id === id)
+  const cart = cartItems?.find((cart) => cart._id === id);
+  const isCartAdded = cartItems?.findIndex((cart) => cart._id === id)
 
   const averageRating = calculateAverageRating(product?.ratings);
 
@@ -46,10 +46,20 @@ export default function ProductDetails() {
 
   const addToCart = (product) => {
     dispatch(ADD_TO_CART(product))
+    dispatch(saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems")) 
+      })
+    );
   }
   const decreaseCart = (product) => {
     dispatch(DECREASE_CART(product))
+    dispatch(saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems")) 
+      })
+    );
   }
+
+  // useEffect(() => {
+  //   dispatch(CALCULATE_TOTAL_QUANTITY())
+  // }, [])
 
   return (
     <section>
@@ -103,7 +113,7 @@ export default function ProductDetails() {
                   <b>Price:</b>
                 </p>
                 <p className={styles.price}>
-                  {product?.price?.toLocaleString("en-Us", {
+                  {product?.price?.toLocaleString("en-US", {
                     style: "currency",
                     currency: "NGN",
                   })}

@@ -10,6 +10,7 @@ export const register = async (req, res) => {
   try {
     // distructure
     const { name, email, password } = req.body;
+    
     // validate
     if(!name.trim()) {
         return res.json({ error: "Name is required" });
@@ -105,5 +106,38 @@ export const adminCheck = async (req, res) => {
     } catch (err) {
       console.log(err);
       res.status(400).json(err.message);  
+    }
+};
+
+
+export const saveCart = async (req, res) => {
+    try {
+        const { cartItems } = req.body;
+
+        const user = await User.findById(req.user._id)
+
+        if (user) {
+            user.cartItems = cartItems
+            user.save()
+            res.json({ message: "Cart saved" })
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(400).json("User not found")
+    }
+}
+
+export const getCart = async(req, res) => {
+    try {
+        console.log("User", req.user._id);
+
+
+        const user = await User.findById(req.user._id);
+        if (user) {
+            res.json(user.cartItems)
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(400).json("User not found")
     }
 }

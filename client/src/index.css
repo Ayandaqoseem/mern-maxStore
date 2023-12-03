@@ -124,6 +124,12 @@ input.form-control:focus {
     box-shadow: 0 0 5px var(--color-brown);
 }
 
+@media only screen and (max-width: 950px) {
+  .wrapper-container-login-reg {
+    height: 90vh;
+  }
+}
+
 @media (max-width: 760px) {
   .wrapper-container-login {
     position: relative;
@@ -212,6 +218,9 @@ a.custom-pointer{
 }
 
 @media only screen and (max-width: 992px) {
+  .offcanvas.body {
+    margin-left: 20px;
+  }
   .menu-nav-flex {
     display: flex;
     flex-direction: column-reverse;
@@ -220,12 +229,15 @@ a.custom-pointer{
   .menu-product-bar {
     list-style: none !important;
   }
+  div.menu-dropdown {
+    margin-left: 10px;
+  }
  
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
   .nav-link.text-warning-emphasis.extra-com {
-    width: 65px;
+    width: 90px;
 
   }
 }
@@ -683,7 +695,8 @@ section {
 }
 .--sidebar-wrapper-dashboard {
   background-color: rgba(109, 57, 4, 0.528);
-  height: 472px;
+  height: 474px;
+  /* z-index: -1; */
 }
 
 .--sidebar-wrapper-dashboard.extra-style {

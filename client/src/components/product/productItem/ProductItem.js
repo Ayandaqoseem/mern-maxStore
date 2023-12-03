@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import DOMPurify from "dompurify";
 import ProductRating from "../productRating/ProductRating";
 import { calculateAverageRating } from "../../../utils";
+import { useDispatch } from "react-redux";
+import { ADD_TO_CART, saveCartDB } from "../../../redux/features/cart/cartSlice";
 
 export default function ProductItem({
   product,
@@ -16,6 +18,16 @@ export default function ProductItem({
   regularPrice,
 }) {
   const averageRating = calculateAverageRating(product.ratings)
+
+  const dispatch = useDispatch();
+
+
+  const addToCart = (product) => {
+    dispatch(ADD_TO_CART(product))
+    dispatch(saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItems"))
+  })
+  )
+  }
 
   return (
     <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
@@ -59,7 +71,10 @@ export default function ProductItem({
           )}
 
           {product?.quantity > 0 ? (
-            <button className="--btn --btn-primary">Add To Cart</button>
+            <button 
+              className="--btn --btn-primary"
+              onClick={() => addToCart(product)}
+            >Add To Cart</button>
           ) : (
             <button
               className="--btn --btn-danger"

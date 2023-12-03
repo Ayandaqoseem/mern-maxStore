@@ -9,11 +9,19 @@ import { getProducts } from "../redux/features/product/productSlice";
 import CarouselItem from "../components/carousel/CarouselItem";
 import FooterLinks from "../components/footer/FooterLinks";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth";
+import { ADD_TO_CART, saveCartDB } from "../redux/features/cart/cartSlice";
 
 export default function Home() {
-  const { products, isLoading } = useSelector((state) => state.product);
+  const { 
+    products, 
+    product, 
+    isLoading 
+  } = useSelector((state) => state.product);
   const dispatch = useDispatch();
- 
+
+  const [auth, setAuth] = useAuth()
+//  console.log("home auth =>", auth.token);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -25,27 +33,39 @@ export default function Home() {
     ?.filter((item, index) => {
       return item.quantity > 0;
     })
-    ?.filter((item, index) => index < 6);
+    ?.filter((item, index) => index < 10);
 
 
     const footwear = products
+    ?.filter((item) => {
+      return item.quantity > 0
+    })
     ?.filter((item, index) => {
       return item.category === "Footwear";
     })
     ?.filter((item, index) => index < 6);
 
   const phones = products
+  ?.filter((item) => {
+    return item.quantity > 0
+  })
     ?.filter((item, index) => {
       return item.category === "Phone";
     })
     ?.filter((item, index) => index < 6);
 
   const shirt = products
+  ?.filter((item) => {
+    return item.quantity > 0
+  })
     ?.filter((item, index) => {
       return item.category === "Shirt";
   })?.filter((item, index) => index < 6)
 
   const flashProducts = products
+  ?.filter((item) => {
+    return item.quantity > 0
+  })
     ?.filter((item, index) => {
       return item.regularPrice < 100000;
     })
@@ -83,6 +103,7 @@ export default function Home() {
         regularPrice={item.regularPrice}
         description={item.description}
         quantity={item.quantity}
+        product={item}
       />
     </div>
   ));
@@ -96,6 +117,7 @@ export default function Home() {
         regularPrice={item.regularPrice}
         description={item.description}
         quantity={item.quantity}
+        product={item}
       />
     </div>
   ));
@@ -109,6 +131,7 @@ export default function Home() {
         regularPrice={item.regularPrice}
         description={item.description}
         quantity={item.quantity}
+        product={item}
       />
     </div>
   ));
@@ -122,6 +145,7 @@ export default function Home() {
         regularPrice={item.regularPrice}
         description={item.description}
         quantity={item.quantity}
+        product={item}
       />
     </div>
   ));
@@ -135,6 +159,7 @@ export default function Home() {
         regularPrice={item.regularPrice}
         description={item.description}
         quantity={item.quantity}
+        product={item}
       />
     </div>
   ));
@@ -150,6 +175,11 @@ export default function Home() {
       </>
     );
   };
+
+  const addToCart = (item) => {
+    dispatch(ADD_TO_CART(item));
+    dispatch(saveCartDB({ cartItems: JSON.parse(localStorage.getItem("cartItem"))}))
+  }
 
   return (
     <>
@@ -184,7 +214,7 @@ export default function Home() {
                 <div className="d-flex bestSeller-wrapper">
                 {sortedBySold.map((item) =>(
                   <div key={item._id} className="bestSeller-carouselItem">
-                    <Link to="/">
+                    <Link to={`/product-details/${item._id}`}>
                     <img className="product--image"  src={item.photo[0]} alt={item.name}/>
                     <p className="price">
                         <span>{item.regularPrice > 0 && 
@@ -202,7 +232,12 @@ export default function Home() {
                     <p>{item.name?.substring(0, 16)}...</p>
                     {/* <p className="--mb">{desc?.substring(0, 26)}...</p> */}
                     </Link>
-                    <button className="--btn --btn-primary --btn-block">Add To Cart</button>
+                    <button 
+                      className="--btn --btn-primary --btn-block"
+                      onClick={() => addToCart(item)}
+                    >
+                      Add To Cart
+                    </button>
                   </div>  
                 ))}
                 </div>
@@ -232,7 +267,7 @@ export default function Home() {
                 <div className="d-flex bestSeller-wrapper">
                 {flashProducts.map((item) =>(
                   <div key={item._id} className="bestSeller-carouselItem">
-                    <Link to="/">
+                    <Link to={`/product-details/${item._id}`}>
                     <img className="product--image"  src={item.photo[0]} alt={item.name}/>
                     <p className="price">
                         <span>{item.regularPrice > 0 && 
@@ -250,7 +285,12 @@ export default function Home() {
                     <p>{item.name?.substring(0, 16)}...</p>
                     {/* <p className="--mb">{desc?.substring(0, 26)}...</p> */}
                     </Link>
-                    <button className="--btn --btn-primary --btn-block">Add To Cart</button>
+                    <button 
+                      className="--btn --btn-primary --btn-block"
+                      onClick={() => addToCart(item)}
+                    >
+                      Add To Cart
+                    </button>
                   </div>  
                 ))}
                 </div>

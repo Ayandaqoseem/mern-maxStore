@@ -2,7 +2,6 @@ import { useAuth } from "../../context/auth";
 import Logo from "../../image/logo/MaxLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Badge } from "antd";
 import { FaShoppingCart } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux";
 import { CALCULATE_TOTAL_QUANTITY, selectCartItems, selectCartTotalQuantity } from "../../redux/features/cart/cartSlice";
@@ -16,20 +15,29 @@ export default function Menu() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const dispatch = useDispatch();
+  // const location = useLocation();
+
 
   const logout = () => {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("Auth");
+    // localStorage.setItem("logoutRedirect", window.location.pathname);
+    // localStorage.setItem("cartItems", JSON.stringify([]))
+  
     navigate("/login");
   };
+
+
 
   const handleLinkClick = () => {
     setIsNavbarOpen(false);
   };
 
   useEffect(() => {
-    dispatch(CALCULATE_TOTAL_QUANTITY)
+    dispatch(CALCULATE_TOTAL_QUANTITY())
   }, [dispatch, cartItems])
+
+  
 
   return (
     <>
@@ -118,7 +126,7 @@ export default function Menu() {
                     <li className="nav-item">
                         <NavLink
                           className="nav-link text-warning-emphasis extra-com cart-count"
-                          to="/cart"
+                          to="/cart" 
                           onClick={handleLinkClick}
                         >
                           Cart

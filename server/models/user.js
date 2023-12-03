@@ -23,6 +23,9 @@ const userSchema = new Schema ({
         type: String,
         trim: true,
     },
+    cartItems: {
+        type: [Object],
+    },
     role: {
         type: Number,
         default: 0,
