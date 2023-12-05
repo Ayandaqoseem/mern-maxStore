@@ -18,7 +18,6 @@ export default function Banner() {
     const loadSlides = async () => {
         try {
             const { data } = await axios.get('/slides')
-            console.log("show data =>", data);
             setSlides(data)
         } catch (err) {
           console.log(err);  

@@ -44,7 +44,9 @@ body {
   transition: all 0.3s;
 }
 
-
+.--color-primary {
+  color: #007bff;
+}
 .--btn:hover {
   transform: translateY(-2px);
 }
@@ -70,6 +72,10 @@ body {
 }
 .--mb {
   margin-bottom: 1rem;
+}
+
+.--cursor {
+  cursor: pointer;
 }
 
 .--flex-between {

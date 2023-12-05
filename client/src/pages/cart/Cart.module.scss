@@ -1,9 +1,9 @@
 a {
   text-decoration: none;
-  color: #ccc;
+  color: #777777;
 }
 .table {
-  padding: 15px 0 2rem 0;
+  padding: 15px 4rem 2rem 4rem;
   width: 100%;
   height: 80vh;
   overflow-x: auto;
@@ -48,4 +48,33 @@ a {
   .table {
     height: 90vh;
   }
+}
+
+// @media (min-width: 576px){
+//   .container{
+//     max-width: 1220px;
+//   }
+    
+// }
+
+
+@media only screen and (max-width: 540px) {
+  .table {
+    padding: 15px 0 2rem 0;
+  }
+  .summary {
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+    button {
+      margin-bottom: 10px;
+    }
+  }
+  .checkout {
+    width: 100%;
+  }
+  .card {
+    width: 100%;
+  }
+    
 }

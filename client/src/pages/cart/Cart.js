@@ -26,6 +26,7 @@ export default function Cart() {
   const cartTotalAmount = useSelector(selectCartTotalAmount);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { coupon } = useSelector((state) => state.coupon)
 
   const decreaseCart = (cart) => {
     dispatch(DECREASE_CART(cart));
@@ -55,14 +56,14 @@ export default function Cart() {
 
   useEffect(() => {
     dispatch(CALCULATE_TOTAL_QUANTITY());
-    dispatch(CALCULATE_SUBTOTAL());
-  }, [dispatch, cartItems]);
+    dispatch(CALCULATE_SUBTOTAL({ coupon }));
+  }, [dispatch, cartItems, coupon]);
 
   
 
   return (
     <section>
-      <div className={`container ${styles.table}`}>
+      <div className={`${styles.container} ${styles.table}`}>
         <h5>Shopping Cart</h5>
         {cartItems?.length === 0 ? (
           <>
