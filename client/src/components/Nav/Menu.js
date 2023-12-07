@@ -2,42 +2,40 @@ import { useAuth } from "../../context/auth";
 import Logo from "../../image/logo/MaxLogo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaShoppingCart } from "react-icons/fa"
+import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { CALCULATE_TOTAL_QUANTITY, selectCartItems, selectCartTotalQuantity } from "../../redux/features/cart/cartSlice";
-
+import {
+  CALCULATE_TOTAL_QUANTITY,
+  selectCartItems,
+  selectCartTotalQuantity,
+} from "../../redux/features/cart/cartSlice";
 
 export default function Menu() {
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
-  const cartItems = useSelector(selectCartItems)
-  const cartTotalQuantity = useSelector(selectCartTotalQuantity)
+  const cartItems = useSelector(selectCartItems);
+  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const dispatch = useDispatch();
   // const location = useLocation();
-
 
   const logout = () => {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("Auth");
     // localStorage.setItem("logoutRedirect", window.location.pathname);
     // localStorage.setItem("cartItems", JSON.stringify([]))
-  
+
     navigate("/login");
   };
-
-
 
   const handleLinkClick = () => {
     setIsNavbarOpen(false);
   };
 
   useEffect(() => {
-    dispatch(CALCULATE_TOTAL_QUANTITY())
-  }, [dispatch, cartItems])
-
-  
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+  }, [dispatch, cartItems]);
 
   return (
     <>
@@ -89,9 +87,10 @@ export default function Menu() {
                 aria-label="Close"
               />
             </div>
+
             <div className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                {!auth?.user ? (
+                {!auth?.user && (
                   <>
                     <li className="nav-item">
                       <NavLink
@@ -112,66 +111,72 @@ export default function Menu() {
                       </NavLink>
                     </li>
                   </>
-                ) : (
-                  <div className="menu-nav-flex">
-                    <li className="nav-item">
-                      <NavLink
-                        className="nav-link text-warning-emphasis extra-com"
-                        to="/shop"
-                        onClick={handleLinkClick}
-                      >
-                        Shop
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
+                )}
+                  <div className="nav-shop-username-container">
+                    {auth?.user && (
+                      <div className="menu-nav-flex">
+                        <div className="dropdown menu-dropdown">
+                          <li>
+                            <a
+                              className="nav-link custom-pointer dropdown-toggle text-color"
+                              data-bs-toggle="dropdown"
+                            >
+                              {auth?.user?.name}
+                            </a>
+
+                            <ul className="dropdown-menu">
+                              <li className="nav-item">
+                                <NavLink
+                                  className="nav-link text-warning-emphasis"
+                                  to={`/dashboard/${
+                                    auth?.user?.role === 1 ? "admin" : "user"
+                                  }`}
+                                  onClick={handleLinkClick}
+                                >
+                                  Dashboard
+                                </NavLink>
+                              </li>
+                              <li className="nav-item">
+                                <a
+                                  className="nav-link text-warning-emphasis custom-pointer"
+                                  onClick={() => {
+                                    handleLinkClick();
+                                    logout();
+                                  }}
+                                >
+                                  Logout
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="menu-nav-flex">
+                      <li className="nav-item">
+                        <NavLink
+                          className="nav-link text-warning-emphasis extra-com"
+                          to="/shop"
+                          onClick={handleLinkClick}
+                        >
+                          Shop
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
                         <NavLink
                           className="nav-link text-warning-emphasis extra-com cart-count"
-                          to="/cart" 
+                          to="/cart"
                           onClick={handleLinkClick}
                         >
                           Cart
                           <FaShoppingCart size={20} />
                           <p>{cartTotalQuantity}</p>
                         </NavLink>
-                    </li>
-
-                    <div className="dropdown menu-dropdown">
-                      <li>
-                        <a
-                          className="nav-link custom-pointer dropdown-toggle text-color"
-                          data-bs-toggle="dropdown"
-                        >
-                          {auth?.user?.name}
-                        </a>
-
-                        <ul className="dropdown-menu">
-                          <li className="nav-item">
-                            <NavLink
-                              className="nav-link text-warning-emphasis"
-                              to={`/dashboard/${
-                                auth?.user?.role === 1 ? "admin" : "user"
-                              }`}
-                              onClick={handleLinkClick}
-                            >
-                              Dashboard
-                            </NavLink>
-                          </li>
-                          <li className="nav-item">
-                            <a
-                              className="nav-link text-warning-emphasis custom-pointer"
-                              onClick={() => {
-                                handleLinkClick();
-                                logout();
-                              }}
-                            >
-                              Logout
-                            </a>
-                          </li>
-                        </ul>
                       </li>
                     </div>
+
                   </div>
-                )}
 
                 {auth?.user?.role === 1 && (
                   <div className="col-md-3 sidebar-wrapper">

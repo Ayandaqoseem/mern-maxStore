@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/auth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartDB, selectCartItems } from "../../redux/features/cart/cartSlice";
+import { getCartDB, saveCartDB, selectCartItems } from "../../redux/features/cart/cartSlice";
 
 export default function Login() {
   const { cartItems } = useSelector(selectCartItems)
+
+  // const [urlParams] = useSearchParams();
+  // const redirect = urlParams.get("redirect")
+  // console.log("show redirect =>", urlParams.get("redirect"));
 
   // console.log("show me cart items =>", cartItems);
   // state
@@ -37,6 +41,12 @@ export default function Login() {
       if (data?.error) {
         toast.error(data.error);
       } else {
+        // if(redirect === "cart") {
+        //   dispatch(saveCartDB({
+        //     cartItems: JSON.parse(localStorage.getItem("cartItems"))
+        //   }))
+        //   return navigate("/cart")
+        // }
         const redirectPath =
           // storedRedirect 
           dispatch(getCartDB()) ||

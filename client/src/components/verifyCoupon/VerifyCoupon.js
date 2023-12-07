@@ -5,7 +5,7 @@ import  Card from "../cards/Card"
 import { REMOVE_COUPON, getCoupon } from "../../redux/features/coupon/couponSlice";
 
 
-const CartDiscount = () => {
+export const CartDiscount = () => {
   const { coupon } = useSelector((state) => state.coupon);
 
   const { initialCartTotalAmount } = useSelector((state) => state.cart);

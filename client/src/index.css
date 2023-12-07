@@ -4,6 +4,9 @@
     --font-family: 'Montserrat', sans-serif;
     --color-brown:  #aa4e02;
     --color-red: red;
+    --color-dark: #333;
+    --color-primary-custom: #007bff;
+    
 }
 
 html {
@@ -95,6 +98,20 @@ body {
 
 .--underline {
   border-bottom: 1px solid #ccc;
+}
+
+.--form-control > * {
+  margin: 5px 0;
+}
+
+
+.--form-control label {
+  font-size: 1.2rem;
+  font-weight: 400;
+  display: inline-block;
+  min-width: 7rem;
+  color: var(--color-dark);
+  margin-right: 1rem;
 }
 
 
@@ -223,14 +240,22 @@ a.custom-pointer{
   font-size: 10px;
 }
 
+.nav-shop-username-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 @media only screen and (max-width: 992px) {
+  .nav-shop-username-container {
+    flex-direction: column;
+  }
   .offcanvas.body {
     margin-left: 20px;
   }
   .menu-nav-flex {
     display: flex;
     flex-direction: column-reverse;
-    gap: 2rem;
+    gap: 0rem;
   }
   .menu-product-bar {
     list-style: none !important;
@@ -240,6 +265,7 @@ a.custom-pointer{
   }
  
 }
+
 
 @media (min-width: 992px) and (max-width: 1200px) {
   .nav-link.text-warning-emphasis.extra-com {

@@ -43,7 +43,6 @@ a {
   }
 }
 
-
 @media (max-width: 992px) {
   .table {
     height: 90vh;
@@ -52,13 +51,12 @@ a {
 
 // @media (min-width: 576px){
 //   .container{
-//     max-width: 1220px;
+//     max-width: 1240px;
 //   }
-    
+
 // }
 
-
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 700px) {
   .table {
     padding: 15px 0 2rem 0;
   }
@@ -76,5 +74,4 @@ a {
   .card {
     width: 100%;
   }
-    
 }

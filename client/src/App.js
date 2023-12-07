@@ -29,6 +29,8 @@ import Coupon from "./pages/admin/ReduxCategory/coupon/Coupon";
 import Product from "./pages/shop/Product"
 import ProductDetails from "./components/product/productDetails/ProductDetail";
 import Cart from "./pages/cart/Cart";
+import CheckoutDetails from "./pages/checkout/CheckoutDetails";
+import Checkout from "./pages/checkout/Checkout";
 
 
 
@@ -52,6 +54,8 @@ export default function App() {
         <Route path="/shop" element={<Product />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout-details" element={<CheckoutDetails />} />
+        <Route path="/checkout-stripe" element={<Checkout />} />
 
 
         <Route path="/login" element={<Login />} />

@@ -19,6 +19,7 @@ import {
 import Card from "../../components/cards/Card";
 import { useEffect } from "react";
 import VerifyCoupon from "../../components/verifyCoupon/VerifyCoupon";
+import PaymentOptions from "../../components/paymentOptions/PaymentOptions";
 
 export default function Cart() {
   const cartItems = useSelector(selectCartItems);
@@ -153,6 +154,8 @@ export default function Cart() {
                     <h4>{`NGN${cartTotalAmount?.toFixed(2)}`}</h4>
                   </div>
                   <VerifyCoupon />
+                  <div className="--underline --m"></div>
+                  <PaymentOptions />
                 </Card>
               </div>
             </div>
