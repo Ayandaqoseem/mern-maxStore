@@ -9,14 +9,12 @@ export default function PaymentOptions() {
   const [paymentMethod, setPaymentMethod] = useState("");
 
   const [auth, setAuth] = useAuth();
-  console.log("show auth", auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const setPayment = (e) => {
     e.preventDefault();
-    console.log(paymentMethod);
     if (paymentMethod === "") {
       return toast.error("please select payment method");
     }

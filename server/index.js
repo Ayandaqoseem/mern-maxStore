@@ -6,6 +6,7 @@ import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import slideRoutes from "./routes/slide.js";
 import brandRoutes from "./routes/brand.js";
+import orderRoutes from "./routes/orderRoute.js"
 // import subCategoryRoutes from "./routes/subCategory.js";
 import couponRoutes from "./routes/coupon.js";
 import morgan from "morgan";
@@ -44,6 +45,7 @@ app.use("/api", productRoutes);
 app.use("/api", slideRoutes);
 app.use("/api", brandRoutes);
 app.use("/api", couponRoutes);
+app.use("/api", orderRoutes);
 
 
 const port = process.env.PORT || 8524;
