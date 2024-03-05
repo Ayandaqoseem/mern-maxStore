@@ -1,0 +1,34 @@
+.userOrderWrapper {
+  height: 76.7vh;
+  margin-top: 2rem;
+  .userOrder-container {
+    text-align: center;
+    .orderHistory {
+      margin-top: 13rem;
+    }
+  }
+  p {
+    font-size: 1.3rem;
+  }
+  .orderText {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+}
+.userOrderContainerDetails {
+  height: 80vh !important;
+  margin-top: 2rem;
+  .orderHistory {
+    padding: 0;
+  }
+  tr {
+    cursor: pointer;
+  }
+}
+
+
+@media (max-width: 772px) {
+  .userOrderContainerDetails {
+    height: 100vh !important;
+  }
+}
