@@ -16,7 +16,7 @@
   }
 }
 .userOrderContainerDetails {
-  height: 80vh !important;
+  height: 90vh;
   margin-top: 2rem;
   .orderHistory {
     padding: 0;
@@ -27,8 +27,14 @@
 }
 
 
-@media (max-width: 772px) {
+@media  (max-width: 772px) {
   .userOrderContainerDetails {
-    height: 100vh !important;
+    height: 150vh !important;
   }
 }
+
+// @media (max-width: 500px) {
+//   .userOrderContainerDetails {
+//     height: 140vh !important;
+//   }
+// }
