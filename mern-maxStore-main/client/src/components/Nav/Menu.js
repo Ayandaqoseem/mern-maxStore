@@ -10,6 +10,9 @@ import {
 } from "../../redux/features/cart/cartSlice";
 import { RESET_AUTH, getUser, logoutUser, selectIsloggedIn,  } from "../../redux/features/auth/authSlice";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLinks/hiddenLinks";
+import  "./Menu.scss";
+
+
 
 export default function Menu() {
   const navigate = useNavigate();
@@ -18,8 +21,7 @@ export default function Menu() {
   const { user } = useSelector((state) => state.auth);
   const isLoggedIn = useSelector(selectIsloggedIn);
 
-  console.log("show User", user);
-  console.log("show newUser", user?.newUser);
+  
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
 
@@ -271,7 +273,7 @@ export default function Menu() {
                         User dashboard
                       </p>
 
-                      <ul className="list-group menu-product-bar">
+                      {/* <ul className="list-group menu-product-bar">
                         <li>
                           <NavLink
                             className="nav-link text-warning-emphasis"
@@ -290,7 +292,7 @@ export default function Menu() {
                             Order
                           </NavLink>
                         </li>
-                      </ul>
+                      </ul> */}
                     </div>
                   )}
                 </>

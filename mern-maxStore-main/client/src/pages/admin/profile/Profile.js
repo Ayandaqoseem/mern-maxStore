@@ -143,7 +143,7 @@ export default function AdminProfile() {
   return (
     <div className="container-fluid d-wrapper-profile">
       <div className="row">
-        <div className="col-md-2 --sidebar-wrapper-dashboard profile-menu">
+        <div className="col-md-2 --sidebar-wrapper-dashboard admin-profile-menu">
           <AdminMenu />
         </div>
 

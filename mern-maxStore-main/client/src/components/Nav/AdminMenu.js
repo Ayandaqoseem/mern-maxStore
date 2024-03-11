@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom"
 export default function AdminMenu() {
     return (
         <div className="sidebar-wrapper-dashboard">
-            <p className=" mt-2 h6 --text-warning-emphasis fw-bold">Admin dashboard</p>
+            <p className="h6 fw-bold admin-text-header">Admin dashboard</p>
 
-            <ul className="list-group list-unstyled">
+            <ul className="list-group list-unstyled menu-ul">
                 {/* <li>
                     <NavLink
                         className="nav-link --text-warning-emphasis pb-3"
@@ -17,7 +17,7 @@ export default function AdminMenu() {
                 </li> */}
                 <li>
                     <NavLink
-                        className="nav-link --text-warning-emphasis pb-3 pt-2"
+                        className="nav-link --text-warning-emphasis"
                         to="/dashboard/admin/redx-category"
                     >
                         Category
@@ -25,7 +25,7 @@ export default function AdminMenu() {
                 </li>
                 <li>
                     <NavLink
-                        className="nav-link --text-warning-emphasis pb-3 pt-2"
+                        className="nav-link --text-warning-emphasis"
                         to="/dashboard/admin/brand"
                     >
                         Brand
@@ -33,7 +33,7 @@ export default function AdminMenu() {
                 </li>
                 <li>
                     <NavLink
-                        className="nav-link --text-warning-emphasis pb-3 pt-2"
+                        className="nav-link --text-warning-emphasis"
                         to="/dashboard/admin/all-products"
                     >
                         All Products
@@ -41,7 +41,7 @@ export default function AdminMenu() {
                 </li>
                 <li>
                     <NavLink
-                        className="nav-link --text-warning-emphasis pb-3 pt-2"
+                        className="nav-link --text-warning-emphasis"
                         to="/dashboard/admin/add-product"
                     >
                         Add Product
@@ -49,7 +49,7 @@ export default function AdminMenu() {
                 </li>
                 <li>
                     <NavLink
-                        className="nav-link --text-warning-emphasis pb-3 pt-2"
+                        className="nav-link --text-warning-emphasis"
                         to="/dashboard/admin/order-history"
                     >
                         Orders

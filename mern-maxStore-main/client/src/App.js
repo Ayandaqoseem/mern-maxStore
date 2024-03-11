@@ -41,6 +41,7 @@ import AdminOrderHistory from "./pages/admin/ReduxCategory/order/AdminOrderHisto
 import CheckoutWithFlutterwave from "./pages/checkout/CheckoutWithFlutterwave";
 import CheckoutPaypal from "./pages/checkout/CheckoutPaypal";
 import Wallet from "./pages/wallet/Wallet";
+import CheckoutWallet from "./pages/checkout/CheckoutWallet";
 
 
 const PageNotFound = () => {
@@ -87,6 +88,7 @@ export default function App() {
           <Route path="user/checkout-success" element={<CheckoutSuccess />} />
           <Route path="user/checkout-flutterwave" element={<CheckoutWithFlutterwave />} />
           <Route path="user/checkout-paypal" element={<CheckoutPaypal />} />
+          <Route path="user/checkout-wallet" element={<CheckoutWallet />} />
           <Route path="user/wallet" element={<Wallet />} />
         </Route>
 

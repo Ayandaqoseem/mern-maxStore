@@ -19,7 +19,8 @@ export const calculateTotalPrice = (products, cartItems) => {
       totalPrice += quantity * price;
     }
   });
-  return totalPrice * 100;
+  // return totalPrice * 100;
+  return totalPrice;
 };
 
 export const updateProductQuantity = async (cartItems) => {

@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 import Order from "../models/orderModel.js";
-// import User from "../models/user.js"
+import User from "../models/user.js"
 import Product from "../models/product.js";
 import { calculateTotalPrice, updateProductQuantity } from "../utils/index.js"
 import Stripe from 'stripe'
 import { sendEmail } from "../utils/sendEmail.js";
+import Transaction from "../models/transaction.js"
 import { orderSuccessEmail } from "../emailTemplates/orderTemplate.js";
 import axios from "axios";
+
 
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -214,5 +216,87 @@ export const verifyFlwPayment = async(req, res) => {
     }
   } catch (error) {
     console.log(error.message);
+  }
+}
+
+// Pay with wallet
+export const payWithWallet = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id)
+    console.log(user);
+
+    const { items, cartItems, shippingAddress, coupon } = req.body;
+
+    const products = await Product.find()
+    const today = new Date()
+
+
+    let orderAmount;
+    orderAmount = calculateTotalPrice(products, items);
+
+    if(coupon !== null && coupon?.name !== "nil") {
+      let totalAfterDiscount = 
+      orderAmount - (orderAmount * coupon?.discount) / 100;
+      orderAmount = totalAfterDiscount;
+    }
+    
+
+    // check wallet balance
+    if (user.balance < orderAmount) {
+      return res.status(400).json("Insufficient balance")
+    }
+
+    // create transaction
+    const newTransaction = Transaction.create({
+      amount: orderAmount,
+      sender: user.email,
+      receiver: "maxstore",
+      description: "Payment for products.",
+      status: "success"
+    })
+
+
+    // decrease sender's wallet balance
+    const newBalance = await User.findOneAndUpdate(
+      { email: user.email },
+      {
+        $inc: {balance: -orderAmount }
+      }
+    );
+
+    // create order
+    const newOrder = await Order.create({
+      user: user._id,
+      orderDate: today.toString(),
+      orderTime: today.toLocaleTimeString(),
+      orderAmount,
+      orderStatus: "Order Placed...",
+      cartItems,
+      shippingAddress,
+      paymentMethod: "Maxstore Wallet",
+      coupon,
+    });
+
+    // Update product quantity
+    await updateProductQuantity(cartItems)
+
+    // Send Order Email to the User
+    const subject = "New Order Placed - maxstore"
+    const send_to = user.email
+    const template = orderSuccessEmail(user.name, cartItems)
+    const reply_to = "no_reply@maxstore.com"
+
+    await sendEmail(subject, send_to, template, reply_to)
+
+    if(newTransaction && newBalance && newOrder) {
+      return res.json({
+        message: "Payment successful.",
+        url: `${process.env.FRONTEND_URL}/dashboard/user/checkout-success`
+      });
+    }
+    res.status(400).json({ message: "Something went wrong, please contact admin"})
+
+  } catch (error) {
+    console.log(error);
   }
 }

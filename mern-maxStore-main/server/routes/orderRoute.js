@@ -11,6 +11,7 @@ import {
   getAllOrders,
   payWithStripe,
   verifyFlwPayment,
+  payWithWallet,
 } from "../controllers/order.js";
 
 router.post("/order", requireSignin, createOrder);
@@ -21,6 +22,7 @@ router.patch("/order/:id", requireSignin, isAdmin, UpdateOrderStatus);
 
 
 router.post("/create-payment-intent", payWithStripe)
+router.post("/payWithWallet", requireSignin, payWithWallet);
 router.get("/response", verifyFlwPayment);
 
 export default router;
